@@ -32,17 +32,23 @@ CPU = 1
 HOSTNAME_PREFIX = "ceph"
 ```
 
-### Run
+### Provision
 
 To start VMs use
 ```
 vagrant up
 ```
 It will provision VMs then use ansible to install and configure Ceph.  
-To rerun ansible playbook [playbook.yml](playbook.yml)
+
+### Install
+
+Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/cephadm/install/).  
+Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).
+To run ansible playbook [playbook.yml](playbook.yml) manually, use:
 ```
 vagrant provision
 ```
+
 ### Test
 ```
 vagrant ssh ceph-1

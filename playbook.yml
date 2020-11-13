@@ -9,3 +9,41 @@
           {% for node in groups['all'] %}
           {{ hostvars[node]['ansible_facts']['default_ipv4']['address'] }} {{ node }}
           {% endfor %}
+
+    - name: install python-apt
+      apt:
+        name: python-apt
+
+    - name: add podman key
+      apt_key:
+        url: 'https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key'
+
+    - name: add podman repo
+      apt_repository:
+        repo: 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /'
+
+    - name: install podman
+      apt:
+        name: podman
+        update_cache: yes
+
+    - name: add cephadm key
+      apt_key:
+        url: 'https://download.ceph.com/keys/release.asc'
+
+    - name: add cephadm repo
+      apt_repository:
+        repo: 'deb https://download.ceph.com/debian-octopus/ buster main'
+
+    - name: install cephadm
+      apt:
+        name:
+          - cephadm
+          - ceph-common
+
+    - name: create /etc/ceph
+      file:
+        path: /etc/ceph
+        state: directory
+
+- hosts: first_node
