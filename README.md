@@ -48,9 +48,9 @@ Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/ceph
 Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).
 
 ### Access
-To get access to dashboard
+To find how to access to dashboard, find the master node and then  
 ```
-vagrant ssh ceph-3 -c ""
+vagrant ssh ceph-3 -c "cat info.log"
 ```
 
 ### Clean

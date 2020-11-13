@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
         subconfig.vm.provision :ansible do |ansible|
           # Disable default limit to connect to all the machines
           ansible.playbook = "playbook.yml"
-          #ansible.limit = "all"
-          ansible.verbose = "v"
+          ansible.limit = "all"
+          ansible.verbose = "vvvv"
         end
       end
     end
