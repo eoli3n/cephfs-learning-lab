@@ -55,7 +55,7 @@ $ vagrant ssh ceph-1 -c "grep -B1 Password info.log"
 	Password: cgib0cyibd
 Connection to 192.168.121.37 closed.
 ```
-Then access to http://192.168.121.37:8443
+Then access to https://192.168.121.37:8443
 
 ### Clean
 To remove everything
