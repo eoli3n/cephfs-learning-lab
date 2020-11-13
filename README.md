@@ -1,4 +1,4 @@
-# cephfs-learning-lab
+# vagrant-cephfs
 Automates local learning infrastructure installation for [CephFS](https://docs.ceph.com/en/latest/)
 
 # Setup
