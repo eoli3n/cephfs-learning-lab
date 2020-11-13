@@ -1,7 +1,9 @@
 # cephfs-learning-lab
-Automates local learning infrastructure installation for CephFS
+Automates local learning infrastructure installation for [CephFS](https://docs.ceph.com/en/latest/)
 
 # Setup
+
+VM provisionning with 3 nodes and 3 storage disks by node.  
 
 ### Prerequistes
 - Vagrant with libvirt provider
@@ -30,10 +32,26 @@ CPU = 1
 HOSTNAME_PREFIX = "ceph"
 ```
 
-# VMs
+### Run
 
+To start VMs use
 ```
 vagrant up
+```
+It will provision VMs then use ansible to install and configure Ceph.  
+To rerun ansible playbook [ceph.yml](ceph.yml)
+```
+vagrant provision
+```
+### Test
+```
 vagrant ssh ceph-1
 $ ping -c 1 ceph-2
+```
+
+### Clean
+
+To remove everything
+```
+vagrant destroy -f
 ```
