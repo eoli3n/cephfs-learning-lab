@@ -19,13 +19,15 @@ vagrant plugin install vagrant-libvirt
 Following [OS recommendations](https://docs.ceph.com/en/latest/start/os-recommendations/), lets use Debian Buster to test CephFS Octopus (15.2.z).  
 
 ### Configure
-You can edit Vagrantfile head
+You can edit [config](config) file.
 ```
 BOX_IMAGE = "generic/debian10"
 NODE_COUNT = 3
+DISK_COUNT = 3
+DISK_SIZE = "1G"
 RAM = 1024
 CPU = 1
-NODE_PREFIX = "ceph"
+HOSTNAME_PREFIX = "ceph"
 ```
 
 # VMs
