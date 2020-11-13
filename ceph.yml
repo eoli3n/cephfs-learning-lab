@@ -1,0 +1,7 @@
+---
+- hosts: ceph-2
+  become: yes
+  tasks:
+    - name: install sl
+      debug:
+        msg: "ok"
