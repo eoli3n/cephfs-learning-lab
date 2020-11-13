@@ -48,13 +48,16 @@ Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/ceph
 Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).
 
 ### Access
-To find how to access to dashboard, find the master node and then  
+To find how to access to dashboard, get ``User`` and ``Password`` on the first node log  
 ```
-vagrant ssh ceph-3 -c "cat info.log"
+$ vagrant ssh ceph-1 -c "grep -B1 Password info.log"
+	   User: admin
+	Password: cgib0cyibd
+Connection to 192.168.121.37 closed.
 ```
+Then access to http://192.168.121.37:8443
 
 ### Clean
-
 To remove everything
 ```
 vagrant destroy -f

@@ -25,9 +25,15 @@ Vagrant.configure("2") do |config|
       if i == NODE_COUNT
         subconfig.vm.provision :ansible do |ansible|
           # Disable default limit to connect to all the machines
-          ansible.playbook = "playbook.yml"
+          ansible.playbook = "00-install.yml"
           ansible.limit = "all"
-          ansible.verbose = "vvvv"
+          #ansible.verbose = "v"
+        end
+        subconfig.vm.provision :ansible do |ansible|
+          ansible.groups = { "main" => [HOSTNAME_PREFIX + "-1"] }
+          ansible.playbook = "01-main.yml"
+          ansible.limit = "all"
+          #ansible.verbose = "v"
         end
       end
     end

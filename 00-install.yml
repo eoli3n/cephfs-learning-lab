@@ -40,13 +40,3 @@
         name:
           - cephadm
           - ceph-common
-
-- hosts: all[0]
-  become: yes
-  gather_facts: no
-  tasks:
-
-    - name: install cephfs cluster
-      shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} &> info.log
-      args:
-        executable: /bin/bash
