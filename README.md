@@ -2,10 +2,14 @@
 Automates local learning infrastructure installation for CephFS
 
 # Setup
+
+### Prerequistes
 - Vagrant with libvirt provider
 - 3G RAM
 - 4 cores
 - 20G disk free space.  
+
+### Install
 For archlinux:  
 ```
 pacman -S vagrant libvirt qemu virt-manager
@@ -14,9 +18,14 @@ vagrant plugin install vagrant-libvirt
 ```
 Following [OS recommendations](https://docs.ceph.com/en/latest/start/os-recommendations/), lets use Debian Buster to test CephFS Octopus (15.2.z).  
 
+### Configure
+You can edit Vagrantfile head
 ```
-# Download Debian 10
-vagrant box add generic/debian10
+BOX_IMAGE = "generic/debian10"
+NODE_COUNT = 3
+RAM = 1024
+CPU = 1
+NODE_PREFIX = "ceph"
 ```
 
 # VMs

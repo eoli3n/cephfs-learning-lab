@@ -1,0 +1,7 @@
+BOX_IMAGE = "generic/debian10"
+NODE_COUNT = 3
+DISK_COUNT = 3
+DISK_SIZE = "1G"
+RAM = 1024
+CPU = 1
+HOSTNAME_PREFIX = "ceph"
