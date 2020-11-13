@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: configure /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {% for node in groups['all'] %}
+          {{ hostvars[node]['ansible_facts']['default_ipv4']['address'] }} {{ node }}
+          {% endfor %}

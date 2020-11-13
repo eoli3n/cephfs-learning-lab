@@ -39,7 +39,7 @@ To start VMs use
 vagrant up
 ```
 It will provision VMs then use ansible to install and configure Ceph.  
-To rerun ansible playbook [ceph.yml](ceph.yml)
+To rerun ansible playbook [playbook.yml](playbook.yml)
 ```
 vagrant provision
 ```
