@@ -11,10 +11,12 @@ VM provisionning with 3 nodes and 3 storage disks by node.
 - 4 cores
 - 20G disk free space.  
 
-### Install
+### Prepare
 For archlinux:  
 ```
 pacman -S vagrant libvirt qemu virt-manager
+sudo gpasswd -a $USER libvirt
+systemctl start libvirtd
 vagrant plugin install vagrant-libvirt
 # choose libvirt in menu
 ```
@@ -44,15 +46,11 @@ It will provision VMs then use ansible to install and configure Ceph.
 
 Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/cephadm/install/).  
 Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).
-To run ansible playbook [playbook.yml](playbook.yml) manually, use:
-```
-vagrant provision
-```
 
-### Test
+### Access
+To get access to dashboard
 ```
-vagrant ssh ceph-1
-$ ping -c 1 ceph-2
+vagrant ssh ceph-3 -c ""
 ```
 
 ### Clean
