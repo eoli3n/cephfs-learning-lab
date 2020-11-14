@@ -45,9 +45,17 @@ It will provision VMs then use ansible to install and configure Ceph.
 ### Install
 
 Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/cephadm/install/).  
-Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).
+Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).  
+To debug  
+```
+vagrant up --no-destroy-on-error
+# if it fails, fix and rerun ansible with
+vagrant provision
+```
 
 ### Access
+
+##### WebUI
 To find how to access to dashboard, get ``User`` and ``Password`` on the first node log  
 ```
 $ vagrant ssh ceph-1 -c "grep -B1 Password info.log"
@@ -56,6 +64,11 @@ $ vagrant ssh ceph-1 -c "grep -B1 Password info.log"
 Connection to 192.168.121.37 closed.
 ```
 Then access to https://192.168.121.37:8443
+
+##### Shell
+```
+vagrant ssh ceph-1 -c "grep shell info.log"
+```
 
 ### Clean
 To remove everything
