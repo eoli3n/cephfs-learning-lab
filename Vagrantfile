@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
         end
         subconfig.vm.provision :ansible do |ansible|
           ansible.groups = { "main" => [HOSTNAME_PREFIX + "-1"] }
-          ansible.playbook = "01-main.yml"
+          ansible.playbook = "01-cluster.yml"
           ansible.limit = "all"
           #ansible.verbose = "v"
         end

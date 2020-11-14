@@ -25,7 +25,19 @@
 - hosts: main
   tasks:
 
+
      - name: add nodes to cluster
        shell: ceph orch host add {{ item }}
        loop: '{{ groups["all"] }}'
        when: not item == inventory_hostname
+
+     - name: create mon
+       shell: ceph orch apply mon 3
+
+     - name: apply mon
+       vars:
+         node_list: "{{ groups['all']|join(',') }}"
+       shell: ceph orch apply mon {{ node_list }}
+
+     - name: add all disks
+       shell: ceph orch apply osd --all-available-devices

@@ -28,7 +28,8 @@ You can edit [config](config) file.
 BOX_IMAGE = "generic/debian10"
 NODE_COUNT = 3
 DISK_COUNT = 3
-DISK_SIZE = "1G"
+# Cephfs requires 5G minimum disks
+DISK_SIZE = "5G"
 RAM = 1024
 CPU = 1
 HOSTNAME_PREFIX = "ceph"
