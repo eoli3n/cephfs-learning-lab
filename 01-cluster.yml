@@ -58,3 +58,7 @@
 
      - name: add all disks
        shell: ceph orch apply osd --all-available-devices
+
+     - name: restart ceph to get health ok
+       #https://lists.ceph.io/hyperkitty/list/ceph-users@ceph.io/message/RLVSPF6FWLK4JSSAQJBVFJ6SITJLEMCS/
+       shell: ceph -s
