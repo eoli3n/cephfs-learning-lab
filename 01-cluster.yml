@@ -38,7 +38,7 @@
          node_list: "{{ groups['all']|join(',') }}"
        shell: ceph orch apply mon {{ node_list }}
 
-     - name: Retry device ls until all mons are up
+     - name: Retry device ls until all mons are up - Be patient...
        shell: "ceph orch device ls"
        register: result
        until: item is in result.stdout
