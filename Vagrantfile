@@ -3,7 +3,7 @@ load 'config'
 Vagrant.configure("2") do |config|
   # Provision NODE_COUNT nodes
   (1..NODE_COUNT).each do |i|
-    hostname = HOSTNAME_PREFIX+"-#{i}"
+    hostname = HOSTNAME_PREFIX+"#{i}"
     config.vm.define hostname do |subconfig|
       # Use BOX_IMAGE
       subconfig.vm.box = BOX_IMAGE
@@ -30,10 +30,13 @@ Vagrant.configure("2") do |config|
           #ansible.verbose = "v"
         end
         subconfig.vm.provision :ansible do |ansible|
-          ansible.groups = { "main" => [HOSTNAME_PREFIX + "-1"] }
+          ansible.groups = { 
+            "leader" => [HOSTNAME_PREFIX + "1"],
+            "followers" => [HOSTNAME_PREFIX + "[2:#{i}]"]
+          }
           ansible.playbook = "01-cluster.yml"
           ansible.limit = "all"
-          #ansible.verbose = "v"
+          ansible.verbose = "v"
         end
       end
     end

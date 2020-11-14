@@ -1,5 +1,5 @@
 ---
-- hosts: main
+- hosts: leader
   gather_facts: no
   tasks:
 
@@ -13,23 +13,22 @@
       shell: cat /etc/ceph/ceph.pub
       register: ssh_key
 
-- hosts: all,!main
+- hosts: followers
   gather_facts: no
   tasks:
 
      - name: deploy ceph ssh key to all nodes
        authorized_key:
          user: "root"
-         key: "{{ hostvars[groups['main'][0]]['ssh_key'].stdout }}"
+         key: "{{ hostvars[groups['leader'][0]]['ssh_key'].stdout }}"
 
-- hosts: main
+- hosts: leader
+  gather_facts: no
   tasks:
-
 
      - name: add nodes to cluster
        shell: ceph orch host add {{ item }}
-       loop: '{{ groups["all"] }}'
-       when: not item == inventory_hostname
+       loop: '{{ groups["followers"] }}'
 
      - name: create mon
        shell: ceph orch apply mon 3
@@ -38,6 +37,14 @@
        vars:
          node_list: "{{ groups['all']|join(',') }}"
        shell: ceph orch apply mon {{ node_list }}
+
+     - name: Retry device ls until all mons are up
+       shell: "ceph orch device ls"
+       register: result
+       until: item is in result.stdout
+       loop: "{{ query('inventory_hostnames', 'all') }}"
+       retries: 60
+       delay: 5
 
      - name: add all disks
        shell: ceph orch apply osd --all-available-devices
