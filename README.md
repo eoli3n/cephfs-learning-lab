@@ -14,7 +14,7 @@ VM provisionning with 3 nodes and 3 storage disks by node.
 ### Prepare
 For archlinux:  
 ```
-pacman -S vagrant libvirt qemu virt-manager
+sudo pacman -S vagrant libvirt qemu virt-manager
 sudo gpasswd -a $USER libvirt
 systemctl start libvirtd
 vagrant plugin install vagrant-libvirt
