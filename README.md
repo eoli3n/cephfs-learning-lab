@@ -1,6 +1,6 @@
 # vagrant-cephfs
 <p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Vagrant.png/394px-Vagrant.png" width="100" /><br /><br /><br /><br /><img src="https://upload.wikimedia.org/wikipedia/fr/b/b4/Ceph_Logo.png" width="90" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Vagrant.png/394px-Vagrant.png" width="100" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/fr/b/b4/Ceph_Logo.png" width="90" />
 </p>
 
 Automates local learning infrastructure installation for [CephFS](https://docs.ceph.com/en/latest/)
