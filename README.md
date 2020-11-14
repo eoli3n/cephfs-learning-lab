@@ -71,8 +71,28 @@ Then access to https://192.168.121.37:8443
 $ vagrant ssh ceph-1 -c "grep shell info.log"
 	sudo /usr/sbin/cephadm shell --fsid ece971a4-267d-11eb-8dc7-5254002940ce -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
 Connection to 192.168.121.28 closed.
-$ vagrant ssh ceph-1 -c "sudo /usr/sbin/cephadm shell --fsid ece971a4-267d-11eb-8dc7-5254002940ce -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring"
-INFO:cephadm:Using recent ceph image docker.io/ceph/ceph:v15
+```
+
+### Use
+To get status
+```
+$ vagrant ssh ceph-1 -c "sudo ceph status"
+  cluster:
+    id:     40d2a482-268f-11eb-9a42-52540047df21
+    health: HEALTH_OK
+ 
+  services:
+    mon: 3 daemons, quorum ceph-1,ceph-2,ceph-3 (age 18m)
+    mgr: ceph-1.rhaonx(active, since 20m), standbys: ceph-3.hydaeu
+    osd: 9 osds: 9 up (since 15m), 9 in (since 15m)
+ 
+  data:
+    pools:   1 pools, 1 pgs
+    objects: 0 objects, 0 B
+    usage:   9.1 GiB used, 36 GiB / 45 GiB avail
+    pgs:     1 active+clean
+ 
+Connection to 192.168.121.172 closed.
 ```
 
 ### Clean
