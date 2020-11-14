@@ -68,7 +68,11 @@ Then access to https://192.168.121.37:8443
 
 ##### Shell
 ```
-vagrant ssh ceph-1 -c "grep shell info.log"
+$ vagrant ssh ceph-1 -c "grep shell info.log"
+	sudo /usr/sbin/cephadm shell --fsid ece971a4-267d-11eb-8dc7-5254002940ce -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+Connection to 192.168.121.28 closed.
+$ vagrant ssh ceph-1 -c "sudo /usr/sbin/cephadm shell --fsid ece971a4-267d-11eb-8dc7-5254002940ce -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring"
+INFO:cephadm:Using recent ceph image docker.io/ceph/ceph:v15
 ```
 
 ### Clean

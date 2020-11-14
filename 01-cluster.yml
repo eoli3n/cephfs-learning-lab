@@ -39,12 +39,22 @@
        shell: ceph orch apply mon {{ node_list }}
 
      - name: Retry device ls until all mons are up - Be patient...
-       shell: "ceph orch device ls"
-       register: result
-       until: item is in result.stdout
+       shell: ceph orch device ls
+       register: osd_test
+       until: item is in osd_test.stdout
        loop: "{{ query('inventory_hostnames', 'all') }}"
        retries: 60
        delay: 5
+
+     - name: extract osds
+       shell: ceph orch device ls | grep -v 'locked' | grep '/dev' | awk '{print $1":"$2}'
+       register: osds
+
+     - name: create osds
+       shell: |
+         ceph orch daemon add osd {{ item }}
+         sleep 2
+       loop: "{{ osds.stdout_lines }}"
 
      - name: add all disks
        shell: ceph orch apply osd --all-available-devices

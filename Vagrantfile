@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
           }
           ansible.playbook = "01-cluster.yml"
           ansible.limit = "all"
-          #ansible.verbose = "v"
+          ansible.verbose = "v"
         end
       end
     end
