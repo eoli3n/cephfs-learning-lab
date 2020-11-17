@@ -1,8 +1,13 @@
 BOX_IMAGE = "generic/debian10"
+HOSTNAME_PREFIX = "ceph-"
+
+# Minimum 3 nodes
 NODE_COUNT = 3
-DISK_COUNT = 3
+
 # Cephfs requires 5G minimum disks
 DISK_SIZE = "5G"
+DISK_COUNT = 3
+
+# Resources
 RAM = 1024
 CPU = 1
-HOSTNAME_PREFIX = "ceph-"

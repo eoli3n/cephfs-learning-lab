@@ -30,17 +30,23 @@ Following [OS recommendations](https://docs.ceph.com/en/latest/start/os-recommen
 You can edit [config](config) file.
 ```
 BOX_IMAGE = "generic/debian10"
+HOSTNAME_PREFIX = "ceph-"
+
+# Minimum 3 nodes
 NODE_COUNT = 3
-DISK_COUNT = 3
+
 # Cephfs requires 5G minimum disks
 DISK_SIZE = "5G"
+DISK_COUNT = 3
+
+# Resources
 RAM = 1024
 CPU = 1
-HOSTNAME_PREFIX = "ceph"
 ```
 
 ### Provision
 
+##### Local
 To start VMs use
 ```
 vagrant up
@@ -48,6 +54,25 @@ vagrant up
 It will provision VMs then use ansible to install and configure Ceph.  
 Ansible will install cluster with [Cephadm](https://docs.ceph.com/en/latest/cephadm/install/).  
 Cephadm install CephFS with containers, i chose to use [podman](https://podman.io/).  
+
+##### Remote
+See https://github.com/vagrant-libvirt/vagrant-libvirt/issues/826#issuecomment-344049372 and https://github.com/vagrant-libvirt/vagrant-libvirt/issues/921#issuecomment-464334757  
+A dirty workaround for isolated test environment is to use ``config.ssh.insert_key = false`` and let Vagrant use its insecure key.
+Create ``~/.vagrant.d/Vagrantfile`` as
+```
+Vagrant.configure("2") do |config|
+  config.ssh.insert_key = false
+  config.vm.provider :libvirt do |libvirt|
+    # run locally
+    # libvirt.uri = "qemu:///system"
+
+    # run on remote
+    libvirt.host = "hostname"
+    libvirt.username = "user"
+    libvirt.connect_via_ssh = true
+  end
+end
+```
 
 ### Debug
 
